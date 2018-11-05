@@ -552,7 +552,7 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 
 
 
-\section{branching}
+\section{Branching and merging}
 
 \fframe{What if I have multiple things to work on at once?}
 {
@@ -567,10 +567,50 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 		\item Update your branch list and commit status with {\tt git fetch [remotename]}
 	\end{itemize}
 
-	We'll visit branches next time, if there is a next time
 }
 
 
+\fframe{relevant branch words}
+{
+	 \begin{itemize}
+		\item {\tt branch}
+		\item {\tt checkout}
+		\item {\tt merge}
+		\item {\tt fetch}
+		\item {\tt pull}
+		\item {\tt stash}
+	\end{itemize}
+}
+
+
+\fframe{make a branch}
+{do it now.  either in a GUI or in the terminal
+
+\vspace{\baselineskip}
+
+{\tt git branch branchname}
+
+\vspace{\baselineskip}
+
+ℹ️
+}
+
+
+\fframe{make a commit}
+{do it now.  either in a GUI or in the terminal}
+
+\fframe{make a switch back to {\tt master} brance}
+{do it now.  either in a GUI or in the terminal}
+
+\fframe{What's a merge conflict}
+{
+	git records differences in files.
+
+	if a patch (diffset) is attempted to be applied on top of a set of commits that record changes in the same portions of a file, it's a {\bf merge conflict}.
+
+}
+
+\fframe{}
 {
 	
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{diagrams/medley_croi_sol_tob_hel_ste_him.jpg}}%
