@@ -8,7 +8,7 @@
 \usecolortheme{orchid}
 
 
-\setbeamersize{text margin left=.25in,text margin right=.25in}
+\setbeamersize{text margin left=.1in,text margin right=.1in}
 \setbeamersize{sidebar width left=1cm, sidebar width right=1cm}
 
 \setbeamertemplate{sidebar right}{}
@@ -81,13 +81,12 @@ language=C++,
                 morecomment=[l][\color{magenta}]{\#}}
 
 
-\usepackage{coloremoji}
+% \usepackage{coloremoji}
 \setbeamertemplate{footline}[frame number] % except I kind of like 
                                            % including the frame number
 \title[Git @ ICERM \hspace{2.5in} Brake]{A \LaTeX-oriented intro to Git \\  \small the tex part is in the interactive demo not in the slides}
 \author{Danielle Amethyst Brake}
-\date{22 October, 2018}
-
+\date{}
 
 
 
@@ -114,8 +113,12 @@ language=C++,
  \titlepage
  
  \begin{center}
- ICERM Semester on Nonlinear Algebra \\ Inter-week collaboration time
 \end{center}
+
+\vspace{-1.5in}
+\small
+22 October - 26 November, 2018 \\ \qquad {\footnotesize ICERM Semester on Nonlinear Algebra} \\31 October - 1 November, 2019 with Martin Skrodzki \\ \qquad {\footnotesize ICERM Semester on Illustrating Mathematics}
+
 
   \includegraphics[height=0.5in]{UWEC-stacked-wordmark-Blue_cmyk}
 \hfill
@@ -158,9 +161,21 @@ language=C++,
 %                                 | |   | | \   |   | |   | (\ (   | |   | |
 %                              ___) (___| )  \  |   | |   | ) \ \__| (___) |
 %                              \_______/|/    )_)   )_(   |/   \__/(_______)
-                                             
+           
+\fframe{Outcomes from these four sessions}
+{
+	\begin{itemize}
+		\item Make a repo, commit to it
+		\item Basic skills for working with a Github hosted repo
+		\item Pushing, pulling
+		\item Branching, mergine
+		\item Forking, issues, pull requests
+	\end{itemize}
 
-\section{Day 1 -- Intro to git}
+	\vspace{\baselineskip}
+
+	This is *a lot*.  
+}                                  
 
 \fframe{}
 {
@@ -168,6 +183,10 @@ language=C++,
 \includegraphics[height=3.5in]{diagrams/git_2x.png}\\xkcd 1597
 	\end{center}
 }
+
+\section{Session 1 -- Intro to git}
+
+
 
 \fframe{What is git?}
 {
@@ -223,12 +242,23 @@ language=C++,
 
 
 \fframe{What's a commit?}{
-A commit is a set of differences, additions and subtractions, together with a message describing them
+
+\begin{definition}
+A {\bf commit} is a set of differences -- additions and subtractions of lines in file -- together with a message describing them
+\end{definition}
 }
 
 \fframe{What's a repo?}
 {  
-A repository is a folder, together with a subfolder containing special git files.  Don't screw with these files.
+\begin{definition}
+A {\bf repository} is a folder, together with a subfolder containing special git files. 
+\end{definition}
+
+ Don't screw with these special files.  They live in {\tt .git/} inside the repo folder.  
+
+\vfill 
+
+ \tiny Ok, sometimes you need to adjust them...
 }
                     
 \fframe{What should I version control?}
@@ -299,7 +329,7 @@ A repository is a folder, together with a subfolder containing special git files
 	Use {\tt .gitignore}, a file at root level (in the repo), that describes patterns for files to ignore.
 
 \vfill
-	protip: they're cumulative in subdirectories, and you can un-ignore things too
+	protip: {\tt .gitignore} is cumulative in subdirectories, and you can un-ignore things too
 }
 
 
@@ -355,7 +385,51 @@ A repository is a folder, together with a subfolder containing special git files
 }
 
 
-\section{Day 2 -- GitHub}
+
+\fframe{Practice time!}
+{
+Things to practice:
+	\begin{enumerate}
+		\item Make some changes
+		\item Commit your changes ({\tt git commit})
+	\end{enumerate}
+
+	Things to research:
+	\begin{itemize}
+		\item Deleting files ({\tt git rm})
+		\item Renaming files ({\tt git mv})
+		\item Writing your commit message in the same command as committing ({\tt git commit -m "arst"})
+	\end{itemize}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Session 2 -- GitHub as a Git server}
 
 \fframe{GitHub-specific things}
 {
@@ -388,22 +462,42 @@ A repository is a folder, together with a subfolder containing special git files
 
 \fframe{Game plan for teaching}
 {
+
+We'll do these things:
 	\begin{enumerate}
  
-		\item make a new repo on github.  clone
+		\item make a new repo on github
+		\item clone
 		\item commit
 		\item push 
+
+	\end{enumerate}
+
+and give overviews for these:
+	\begin{itemize}
 		\item remotes
 		\item pulling and pushin
 		\item merges and conflicts
-
-	\end{enumerate}
+	\end{itemize}
+	
 }
 
 
 
-\fframe{new}
-{Make a git repository on Github.  If you pay, you can make them private
+\fframe{1. new}
+{Let's make a git repository on Github.  
+
+\vspace{\baselineskip}
+$\Rightarrow$ Follow along on the projector
+\vspace{\baselineskip}
+
+\vfill
+
+\hrule
+
+\vspace{\baselineskip}
+
+If you pay GitHub, you can make your repos private
 
 \vspace{\baselineskip}
 
@@ -429,19 +523,19 @@ A repository is a folder, together with a subfolder containing special git files
 	\end{itemize}
 }
 
-\fframe{clone}
+\fframe{2. clone}
 {
-	on your local machine, from the terminal, type
-
-\vspace{\baselineskip}
-
-	{\tt git clone https://github.com/username/reponame}
-
-\vspace{\baselineskip}
-and then {\tt ls} and 👀 around.  
+	on your local machine, from the terminal
+	\begin{enumerate}
+		\item move to a location you want the repo's folder to be \\ \quad
+		{\tt cd /path/to/folder}
+		\item type \\
+		\quad {\tt git clone https://github.com/username/reponame}
+		\item look 👀 around \\ \quad {\tt ls} 
+\end{enumerate}
 }
 
-\fframe{commit}
+\fframe{3. commit}
 {
 while 1
 \begin{enumerate}
@@ -453,7 +547,7 @@ while 1
 
 
 
-\fframe{get that data online}
+\fframe{4. get that data online}
 {
 	now we'll push.
 	\begin{definition}
@@ -473,9 +567,14 @@ to {\bf push} is a git action, meaning to make a sequence of {\em commits} appea
 
 
 
-\fframe{collaborative projects using git}
+\fframe{Why use a git server? Collaboration}
 {
-	there are many ways to use git to share code (focusing on github here).  \\here are 2 main ways"
+
+	there are many ways to use git to share code \\(focusing on github here).  
+
+
+	\vspace{\baselineskip}
+	here are 2 main ways:
 
 \vspace{\baselineskip}
 	\begin{itemize}
@@ -488,30 +587,9 @@ to {\bf push} is a git action, meaning to make a sequence of {\em commits} appea
 they both have advantages and disadvantages.  We get to choose.  
 	\begin{itemize}
 	\item Collaborating will lead to merge conflicts sooner
-	\item Forking will let us learn about forking and PR's
+	\item Forking will let us learn about forking and PR's.  This will happen in session 4.
 \end{itemize}
 }
-
-
-
-
-\fframe{Fork}
-{
-	\begin{definition}
-to {\bf fork} is a Github action, meaning to take a clone from one user's repository, and associate it as upstream
-	\end{definition}
-
-	\begin{definition}
-we say A is {\bf upstream} of B when A is a remote of B, and Github has stored that direction in the association graph
-	\end{definition}
-
-	let's use that diagram again
-}
-
-
-
-
-
 
 
 
@@ -552,7 +630,31 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 
 
 
-\section{Branching and merging}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Session 3 - Branching and merging}
 
 \fframe{What if I have multiple things to work on at once?}
 {
@@ -567,16 +669,258 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 		\item Update your branch list and commit status with {\tt git fetch [remotename]}
 	\end{itemize}
 
-	We'll visit branches next time, if there is a next time
 }
 
 
-stuff and things i hope this generates a merge conflict
-
-
-
+\fframe{relevant branch words}
 {
-	
+	 \begin{itemize}
+		\item {\tt branch}
+		\item {\tt checkout}
+		\item {\tt merge}
+		\item {\tt fetch}
+		\item {\tt pull}
+		\item {\tt stash}
+	\end{itemize}
+}
+
+
+\fframe{make a branch}
+{do it now.  either in a GUI or in the terminal
+
+\vspace{\baselineskip}
+
+{\tt git branch branchname}
+
+\vspace{\baselineskip}
+
+✅ you can totally make up "folders" for your branches, and branch from branches, etc.
+}
+
+
+
+\fframe{make a commit}
+{do it now.  either in a GUI or in the terminal}
+
+\fframe{make a switch back to {\tt master} branch}
+{do it now.  either in a GUI or in the terminal
+
+
+\vspace{\baselineskip}
+
+now look around at the file you edited.  what do you notice?
+}
+
+\fframe{branch again, from master}
+{
+	{\tt git branch branchname2}
+}
+
+
+\fframe{make a commit}
+{
+do it now.  
+
+
+\vspace{\baselineskip}
+
+✅ 
+please, DO modify the same area of a file you edited in the other branch-commit exercise.  (i have a reason you should do this)
+
+}
+
+
+\fframe{now we'll merge in the first branch}
+{
+	\begin{enumerate}
+		\item switch back to {\tt master}
+		\item {\tt git merge  branchname}
+		\item [optional] -- {\tt git branch -d branchname}
+	\end{enumerate}
+
+\vspace{\baselineskip}
+
+	this is done at the end of a branch's life, often, when you are done with a feature (sequence of commits focused on one thing)
+}
+
+\fframe{merge in the second branch}
+{
+	same process.  be in branch you want the commits to end up in, and merge the other branch into it.
+
+\vspace{\baselineskip}
+
+		\begin{enumerate}
+		\item switch back to {\tt master}
+		\item {\tt git merge  branchname2}
+		\item [optional] -- {\tt git branch -d branchname2}
+	\end{enumerate}
+
+	if we've done it right, we'll get a merge conflict problem.  
+}
+
+
+
+
+\fframe{What's a merge conflict?}
+{
+	git records differences in files.
+
+	if a patch (diffset) is attempted to be applied on top of a set of commits that record changes in the same portions of a file, it's a {\bf merge conflict}.
+
+}
+
+\fframe{Get some tools to help}
+{
+	I turn to GUI tools at this point, honestly.
+
+	There are lots of tools you can use.  Choose one for 
+	\begin{itemize}
+		\item git itself.  i do not recommend the GitHub app, unless you are hosting origin at GitHub.
+		\item merging.  do a search right now for tools for this.  
+		OSX users -- XCode comes with FileMerge, and it's not terrible.
+		\end{itemize} 
+
+
+}
+
+\fframe{How to resolve a merge conflict}
+{
+
+		\begin{enumerate}
+			\item goto the repo in the git tool, and use the UI to 'launch external merge tool' on the conflicted files.
+			\item use the merge tool to resolve conflicts, choosing right, left, both, neither, or hand-editing.
+			\item save
+			\item test.  goto 2?
+			\item quit the merge tool
+			\item return to the git tool.  finish the commit to finish the merge.  
+		\end{enumerate}
+
+}
+
+
+
+\fframe{things you should know}
+{
+\begin{itemize}
+		\item If things get FUBAR, {\tt git reset --hard} will, well, reset your repo to before you started the merge.  just start over
+		\item beware accentally committing partially merged files.  you get diff crap left in the file, and it's annoying
+		\item You might consider doing the merge from master into feature, then merge feature into master, to make any mistakes appear in feature.
+	\end{itemize}
+}
+
+
+
+
+
+
+
+
+
+
+\section{Session 4 - Github and branching}
+
+\fframe{Github features}
+{
+\begin{itemize}
+	\item Forking
+	\item Pull requests
+	\item Issues
+\end{itemize}
+}
+
+
+\fframe{Fork}
+{
+	\begin{definition}
+to {\bf fork} is a Github action, meaning to take a clone from one user's repository, and associate it as upstream
+	\end{definition}
+
+	\begin{definition}
+we say A is {\bf upstream} of B when A is a remote of B, and Github has stored that direction in the association graph
+	\end{definition}
+
+	let's use that diagram again
+}
+
+
+\fframe{Pull request}
+{
+	\begin{definition}
+		a {\bf pull request} is a Github thing that requests that an owner of a repo A from which a fork B has been taken, pull from B into A.
+	\end{definition}
+
+	Pull requests (PRs) facilitate discussion around blobs of commits, and the resolution of the merge.
+
+	They're helpful because, if you don't have this service, how do you let the other person know that you're ready to share your new changes / code?
+}
+
+\fframe{notes on PRs}
+{
+\begin{itemize}
+	\item Pull requests are often made from branches on the fork.  In fact, when you make the PR, you choose the from/to branch.
+	\item Sometimes it is nice to generate PRs, even if you control both repos, for generating records.
+\end{itemize}
+
+let's make a PR.  
+}
+
+
+
+\fframe{together, let's}
+{
+	\begin{enumerate}
+		\item fork a friend's repo
+		\item clone to our computer
+		\item branch
+		\item commit to that branch
+		\item push to origin
+		\item make the PR
+		\item resolve the PR
+	\end{enumerate}
+}
+
+\fframe{Issues}
+{
+	\begin{definition}
+an {\bf issue} is a github thread of conversation focused on one topic related to the repo.
+	\end{definition}
+
+}
+
+
+\fframe{notes on issues}
+{
+	\begin{itemize}
+\item Issues are unique to the repo.  Forks don't carry issues.
+\item Issues and PR's form a sequence starting at 1.  \#1 is the first issue/PR for that repo
+\item Use {\bf labels}  to good effect.  Github pre-populates a list for you these days
+\item Hide irrelevant posts in the thread to help your users
+\item Think about having a policy on the README or on your Wiki that describes the etiquette expected in your issues page
+	\end{itemize}
+}
+
+\fframe{Let's make issues}
+{
+\begin{enumerate}
+	\item Find a friend's repo
+	\item Start an issue
+\end{enumerate}
+
+\vspace{\baselineskip}
+This part will be done in a browser
+}
+
+
+\section*{---}
+\fframe{What else would you like to talk about?}
+{
+	???
+}
+
+
+
+
+
 \usebackgroundtemplate{\includegraphics[width=\paperwidth]{diagrams/medley_croi_sol_tob_hel_ste_him.jpg}}%
 \fframe{Thank you!}{
 
