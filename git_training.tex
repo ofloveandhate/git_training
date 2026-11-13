@@ -82,10 +82,10 @@ language=C++,
 
 
 % \usepackage{coloremoji}
-\setbeamertemplate{footline}[frame number] % except I kind of like 
+\setbeamertemplate{footline}[frame number] % except I kind of like
                                            % including the frame number
 \title[Git @ ICERM \hspace{2.5in} Brake]{A \LaTeX-oriented intro to Git \\  \small the tex part is in the interactive demo not in the slides}
-\author{Danielle Amethyst Brake}
+\author{Silviana Amethyst}
 \date{}
 
 
@@ -111,7 +111,7 @@ language=C++,
 \begin{frame}
 
  \titlepage
- 
+
  \begin{center}
 \end{center}
 
@@ -153,7 +153,7 @@ language=C++,
 
 
 
-%                              _________ _       _________ _______  _______ 
+%                              _________ _       _________ _______  _______
 %                              \__   __/( (    /|\__   __/(  ____ )(  ___  )
 %                                 ) (   |  \  ( |   ) (   | (    )|| (   ) |
 %                                 | |   |   \ | |   | |   | (____)|| |   | |
@@ -161,7 +161,7 @@ language=C++,
 %                                 | |   | | \   |   | |   | (\ (   | |   | |
 %                              ___) (___| )  \  |   | |   | ) \ \__| (___) |
 %                              \_______/|/    )_)   )_(   |/   \__/(_______)
-           
+
 \fframe{Outcomes from these four sessions}
 {
 	\begin{itemize}
@@ -174,8 +174,8 @@ language=C++,
 
 	\vspace{\baselineskip}
 
-	This is *a lot*.  
-}                                  
+	This is *a lot*.
+}
 
 \fframe{}
 {
@@ -198,9 +198,9 @@ language=C++,
 	{\em and how is that different from github?}
 
 \vspace{\baselineskip}
-	good question, my friend.  
+	good question, my friend.
 	\begin{definition}
-	GitHub is a social media site build around {\tt git} repositories.  
+	GitHub is a social media site build around {\tt git} repositories.
 	\end{definition}
 }
 
@@ -220,12 +220,12 @@ language=C++,
 		\item {\tt .gitignore}
 
 
-		
+
 	\end{itemize}
 
 	\column{2in}
 	Commit-focused words
-	\begin{itemize}		
+	\begin{itemize}
 		\item branch
 		\item rebase
 		\item fast-forward
@@ -249,23 +249,23 @@ A {\bf commit} is a set of differences -- additions and subtractions of lines in
 }
 
 \fframe{What's a repo?}
-{  
+{
 \begin{definition}
-A {\bf repository} is a folder, together with a subfolder containing special git files. 
+A {\bf repository} is a folder, together with a subfolder containing special git files.
 \end{definition}
 
- Don't screw with these special files.  They live in {\tt .git/} inside the repo folder.  
+ Don't screw with these special files.  They live in {\tt .git/} inside the repo folder.
 
-\vfill 
+\vfill
 
  \tiny Ok, sometimes you need to adjust them...
 }
-                    
+
 \fframe{What should I version control?}
 {
-	✅ Use git for these: 
+	✅ Use git for these:
 	\begin{itemize}
-		\item Files that can be meaningfully-diffed (think text files), and 
+		\item Files that can be meaningfully-diffed (think text files), and
 		\item static non-diffable files (think images that don't change)
 	\end{itemize}
 
@@ -331,7 +331,7 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 
 \fframe{How do I prevent myself from adding temp files?}
 {
-	🔴 Be very careful to not ever add a temp file, because once it starts tracking, it's there forever.  
+	🔴 Be very careful to not ever add a temp file, because once it starts tracking, it's there forever.
 
 \vspace{\baselineskip}
 	Use {\tt .gitignore}, a file at root level (in the repo), that describes patterns for files to ignore.
@@ -363,9 +363,9 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 
 \vspace{\baselineskip}
 
-	You cannot delete commits from a repo.  
+	You cannot delete commits from a repo.
 	\begin{itemize}
-		\item You {\bf revert} them with the inverse commit.   
+		\item You {\bf revert} them with the inverse commit.
 		\item You can delete branches... and maybe lose work
 		\item You can delete repos... and maybe lose work
 	\end{itemize}
@@ -450,12 +450,12 @@ Things to practice:
 		\item issue
 
 
-		
+
 	\end{itemize}
 
 	\column{2in}
 	Commit- or branch-focused words
-	\begin{itemize}		
+	\begin{itemize}
 		\item pull request
 	\end{itemize}
 	\end{columns}
@@ -473,11 +473,11 @@ Things to practice:
 
 We'll do these things:
 	\begin{enumerate}
- 
+
 		\item make a new repo on github
 		\item clone
 		\item commit
-		\item push 
+		\item push
 
 	\end{enumerate}
 
@@ -487,13 +487,13 @@ and give overviews for these:
 		\item pulling and pushin
 		\item merges and conflicts
 	\end{itemize}
-	
+
 }
 
 
 
 \fframe{1. new}
-{Let's make a git repository on Github.  
+{Let's make a git repository on Github.
 
 \vspace{\baselineskip}
 $\Rightarrow$ Follow along on the projector
@@ -526,7 +526,7 @@ If you pay GitHub, you can make your repos private
 	\vspace{\baselineskip}
 
 	\begin{itemize}
-		\item It's a copy of the original repo, in terms of commits.  
+		\item It's a copy of the original repo, in terms of commits.
 		\item It's only an identical copy when cloned.  it's expected to diverge by committing...
 	\end{itemize}
 }
@@ -539,7 +539,7 @@ If you pay GitHub, you can make your repos private
 		{\tt cd /path/to/folder}
 		\item type \\
 		\quad {\tt git clone https://github.com/username/reponame}
-		\item look 👀 around \\ \quad {\tt ls} 
+		\item look 👀 around \\ \quad {\tt ls}
 \end{enumerate}
 }
 
@@ -565,7 +565,7 @@ to {\bf push} is a git action, meaning to make a sequence of {\em commits} appea
 	\vspace{\baselineskip}
 
 	\begin{itemize}
-	\item all existing commits in {\tt remote} must be present to push.  
+	\item all existing commits in {\tt remote} must be present to push.
 	\item hence, pull before you push.  this often makes no difference in a one-person project
 	\item typically, you push to origin, which is where the repo came from when cloned
 	\end{itemize}
@@ -578,7 +578,7 @@ to {\bf push} is a git action, meaning to make a sequence of {\em commits} appea
 \fframe{Why use a git server? Collaboration}
 {
 
-	there are many ways to use git to share code \\(focusing on github here).  
+	there are many ways to use git to share code \\(focusing on github here).
 
 
 	\vspace{\baselineskip}
@@ -592,7 +592,7 @@ to {\bf push} is a git action, meaning to make a sequence of {\em commits} appea
 
 \vspace{\baselineskip}
 
-they both have advantages and disadvantages.  We get to choose.  
+they both have advantages and disadvantages.  We get to choose.
 	\begin{itemize}
 	\item Collaborating will lead to merge conflicts sooner
 	\item Forking will let us learn about forking and PR's.  This will happen in session 4.
@@ -627,9 +627,9 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 
 		\begin{itemize}
 	\item a merge conflict isn't bad
-	\item the conflict is resolved when the conflicted file is marked as saved.  
-	\item i honestly use a visual tool for this and don't know how to do it command line.  
-	\item i totally use visual diff tools.  
+	\item the conflict is resolved when the conflicted file is marked as saved.
+	\item i honestly use a visual tool for this and don't know how to do it command line.
+	\item i totally use visual diff tools.
 \end{itemize}
 }
 
@@ -727,12 +727,12 @@ now look around at the file you edited.  what do you notice?
 
 \fframe{make a commit}
 {
-do it now.  
+do it now.
 
 
 \vspace{\baselineskip}
 
-✅ 
+✅
 please, DO modify the same area of a file you edited in the other branch-commit exercise.  (i have a reason you should do this)
 
 }
@@ -763,7 +763,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 		\item [optional] -- {\tt git branch -d branchname2}
 	\end{enumerate}
 
-	if we've done it right, we'll get a merge conflict problem.  
+	if we've done it right, we'll get a merge conflict problem.
 }
 
 
@@ -781,12 +781,12 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 {
 	I turn to GUI tools at this point, honestly.
 
-	There are lots of tools you can use.  Choose one for 
+	There are lots of tools you can use.  Choose one for
 	\begin{itemize}
 		\item git itself.  i do not recommend the GitHub app, unless you are hosting origin at GitHub.
-		\item merging.  do a search right now for tools for this.  
+		\item merging.  do a search right now for tools for this.
 		OSX users -- XCode comes with FileMerge, and it's not terrible.
-		\end{itemize} 
+		\end{itemize}
 
 
 }
@@ -800,7 +800,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 			\item save
 			\item test.  goto 2?
 			\item quit the merge tool
-			\item return to the git tool.  finish the commit to finish the merge.  
+			\item return to the git tool.  finish the commit to finish the merge.
 		\end{enumerate}
 
 }
@@ -869,7 +869,7 @@ we say A is {\bf upstream} of B when A is a remote of B, and Github has stored t
 	\item Sometimes it is nice to generate PRs, even if you control both repos, for generating records.
 \end{itemize}
 
-let's make a PR.  
+let's make a PR.
 }
 
 
