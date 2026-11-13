@@ -1,0 +1,11 @@
+*.nav
+*.log
+*.fls
+*.out
+*.snm
+git_training.pdf
+*.synctex.gz
+*.toc
+
+*.fdb_latexmk
+*.aux
