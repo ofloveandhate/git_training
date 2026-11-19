@@ -1,11 +1,30 @@
 
-\documentclass[14pt,aspectratio=1610]{beamer} %,draft  % !TEX program = xelatex
-
+\documentclass[14pt,aspectratio=1610]{beamer} %,draft
 
 % \usefonttheme{sanserif}
 
 % \usetheme{Pittsburgh}%
-\usecolortheme{orchid}
+
+% \usetheme{Boadilla}
+
+\setbeamersize{text margin left=0.5cm,text margin right=1cm}
+
+\setbeamersize{text margin left=0.5cm,text margin right=1cm}
+% \setbeamersize{sidebar width left=0.5cm, sidebar width right=0.5cm} // this is off, because i don't want sidebars
+
+% \usetheme[headheight=1in,footheight=0.1in]{default}
+% \setbeamersize{headheight=2cm}
+
+
+\setbeamercolor{block title}{fg=white, bg=green!50!black}
+\setbeamercolor{block body}{fg=black, bg=green!10}
+
+\setbeamertemplate{navigation symbols}{}
+
+
+
+\usefonttheme{professionalfonts}
+\usepackage[mainfont]{nunito}
 
 
 \setbeamersize{text margin left=.1in,text margin right=.1in}
@@ -24,6 +43,10 @@
 \usepackage[outdir=./diagrams/]{epstopdf}
 
 
+
+% for code typesetting
+\usepackage{minted}
+\setminted[python]{breaklines, framesep=2mm, fontsize=\footnotesize, numbersep=5pt}
 
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\bR}{\mathbb{R}}
@@ -81,10 +104,10 @@ language=C++,
                 morecomment=[l][\color{magenta}]{\#}}
 
 
-% \usepackage{coloremoji}
+\usepackage{coloremoji}
 \setbeamertemplate{footline}[frame number] % except I kind of like
                                            % including the frame number
-\title[Git @ ICERM \hspace{2.5in} Brake]{A \LaTeX-oriented intro to Git \\  \small the tex part is in the interactive demo not in the slides}
+\title[Git @ ICERM \hspace{2.5in} Amethyst]{A \LaTeX-oriented intro to Git \\  \small the tex part is in the interactive teaching, not in the slides}
 \author{Silviana Amethyst}
 \date{}
 
@@ -115,14 +138,10 @@ language=C++,
  \begin{center}
 \end{center}
 
-\vspace{-1.5in}
-\small
-22 October - 26 November, 2018 \\ \qquad {\footnotesize ICERM Semester on Nonlinear Algebra} \\31 October - 1 November, 2019 with Martin Skrodzki \\ \qquad {\footnotesize ICERM Semester on Illustrating Mathematics}
 
-
-  \includegraphics[height=0.5in]{UWEC-stacked-wordmark-Blue_cmyk}
-\hfill
- \includegraphics[height=0.5in]{Power-of-AND_stckd_blu_CMYK}
+%   \includegraphics[height=0.5in]{UWEC-stacked-wordmark-Blue_cmyk}
+% \hfill
+%  \includegraphics[height=0.5in]{Power-of-AND_stckd_blu_CMYK}
 
 \end{frame}
 
@@ -168,7 +187,7 @@ language=C++,
 		\item Make a repo, commit to it
 		\item Basic skills for working with a Github hosted repo
 		\item Pushing, pulling
-		\item Branching, mergine
+		\item Branching, merging
 		\item Forking, issues, pull requests
 	\end{itemize}
 
@@ -204,6 +223,16 @@ language=C++,
 	\end{definition}
 }
 
+\fframe{Problems git solves}
+{
+	\begin{itemize}
+		\item ☢️ The Hot Copy problem.  Collaborative editing.  Stop sending copies by email.
+		\item 🗄️ Record keeping.
+		\item 🕰️ Git as a time machine.
+		\item 🫠 Working on multiple aspects at the same time
+		\item 🏭 integrations with many systems via GitHub and GitLab
+	\end{itemize}
+}
 
 \fframe{What are words related to Git?}
 {
@@ -218,9 +247,6 @@ language=C++,
 		\item remote
 		\item reset
 		\item {\tt .gitignore}
-
-
-
 	\end{itemize}
 
 	\column{2in}
@@ -254,45 +280,35 @@ A {\bf commit} is a set of differences -- additions and subtractions of lines in
 A {\bf repository} is a folder, together with a subfolder containing special git files.
 \end{definition}
 
- Don't screw with these special files.  They live in {\tt .git/} inside the repo folder.
+ Don't screw with these special files\footnote{Ok, sometimes you need to adjust them...}.
 
-\vfill
+ They live in {\tt .git/} inside the repo folder.
 
- \tiny Ok, sometimes you need to adjust them...
 }
 
-\fframe{What should I version control?}
+\fframe{What should I put under version control?}
 {
 	✅ Use git for these:
 	\begin{itemize}
-		\item Files that can be meaningfully-diffed (think text files), and
-		\item static non-diffable files (think images that don't change)
+		\item Files that can be meaningfully-diffed (think text files)
+		\item maybe, static non-diffable files (think images that don't change)
 	\end{itemize}
 
 \vspace{\baselineskip}
 
-	🚫 do NOT use git for version control for these:
+	🚫 generally, don't use git for version control for these:
 	\begin{itemize}
 		\item generated files (pdf's, executables)
 		\item temporary files
 		\item word documents (but you wouldn't use word anyway, would you? 😦)
 	\end{itemize}
+
+	There exists special software for archiving images, sounds, etc... I'm not familiar.
 }
 
 
 
-
-\fframe{Git setup}
-{
-	add your email address
-
-	{\tt git config --global user.email me@example.edu} \\
-	{\tt git config --global user.name "Anne Example"}
-}
-
-
-
-\fframe{How do i make a repository?}
+\fframe{Make a repo with \texttt{git init}}
 {
 	\begin{enumerate}
 		\item make a new folder, or move to an existing one
@@ -302,19 +318,70 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 \vspace{\baselineskip}
 
 👀	look around in the folder.  does it look different?
+
+Look closer.  {\tt ls -a} .  Or open in VS Code etc.
 }
 
+
+\fframe{Now make changes}
+{
+\begin{enumerate}
+	\item Make a LaTeX document in the folder.
+	\item Compile it.
+\end{enumerate}
+}
 
 \fframe{How do i commit?}
 {
 	\begin{enumerate}
-		\item make some changes
+		\item make some changes.  Git doesn't work unless you do work.
 		\item {\tt git add filename.ext}
 		\item {\tt git commit}
 		\item write a commit message
 		\item save `file' for commit message, done
 	\end{enumerate}
 }
+
+
+
+
+
+
+
+
+\fframe{Git setup}
+{
+	add your email address
+
+\begin{itemize}
+	\item
+	for all repos
+
+	{\tt git config --global user.email me@example.edu} \\
+	{\tt git config --global user.name "Anne Example"}
+
+\item
+	for THIS repo
+
+	{\tt git config user.email me@example.edu} \\
+	{\tt git config user.name "Anne Example"}
+
+\end{itemize}
+\vspace{0.5cm}
+
+	\hrule
+
+\vspace{0.5cm}
+
+	This is not needed if you clone thru Github desktop app, eg.
+}
+
+
+
+
+
+
+
 
 \fframe{What's a good commit message?}
 {
@@ -329,19 +396,23 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 	\end{itemize}
 }
 
-\fframe{How do I prevent myself from adding temp files?}
+\fframe{Prevent your from adding temp files, secrets, with gitignore}
 {
-	🔴 Be very careful to not ever add a temp file, because once it starts tracking, it's there forever.
+	🔴 Be very careful to not ever commit a temp file, because once it starts tracking, it's there forever, unless you rewrite history.
 
 \vspace{\baselineskip}
 	Use {\tt .gitignore}, a file at root level (in the repo), that describes patterns for files to ignore.
 
 \vfill
 	protip: {\tt .gitignore} is cumulative in subdirectories, and you can un-ignore things too
+
+	\vspace{5mm}
+
+	MacOS users, beware {\tt .DS\_Store}, it's the worst offender
 }
 
 
-\fframe{How do I delete files?}
+\fframe{How do record deletion of files?}
 {
 	\begin{enumerate}
 		\item Delete the file in your local clone
@@ -354,6 +425,8 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 	\begin{enumerate}
 		\item {\tt git delete file} -- all in one
 	\end{enumerate}
+
+	There are many {\tt git command}: for {\tt mv}, and more
 }
 
 
@@ -368,6 +441,14 @@ A {\bf repository} is a folder, together with a subfolder containing special git
 		\item You {\bf revert} them with the inverse commit.
 		\item You can delete branches... and maybe lose work
 		\item You can delete repos... and maybe lose work
+	\end{itemize}
+
+\vspace{5mm}
+
+Actually,
+	\begin{itemize}
+		\item you CAN change commits by rewriting history, \\
+		but it causes nightmares 🧌 for collaborators.
 	\end{itemize}
 }
 
@@ -407,6 +488,9 @@ Things to practice:
 		\item Deleting files ({\tt git rm})
 		\item Renaming files ({\tt git mv})
 		\item Writing your commit message in the same command as committing ({\tt git commit -m "arst"})
+		\item {\tt git log}
+		\item {\tt git status}
+		\item GUI tools, like Github Desktop, Sourcetree, ...
 	\end{itemize}
 }
 
@@ -437,7 +521,9 @@ Things to practice:
 
 
 
-\section{Session 2 -- GitHub as a Git server}
+\section{Session 2 -- GitHub basics}
+
+\subsection{Making repos; language}
 
 \fframe{GitHub-specific things}
 {
@@ -465,7 +551,7 @@ Things to practice:
 
 
 \fframe{}
-{\begin{center}\includegraphics[width=4in]{git_usage.pdf}\end{center}}
+{\begin{center}\includegraphics[width=3.75in]{git_usage.pdf}\end{center}}
 
 
 \fframe{Game plan for teaching}
@@ -514,7 +600,7 @@ If you pay GitHub, you can make your repos private
 
 \vspace{\baselineskip}
 
-🎯 we won't make a repo on our local computer this time
+🎯 we won't make the repo on our local computer this time
 }
 
 \fframe{What is a clone?}
@@ -621,7 +707,7 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 }
 
 
-\fframe{merge conflict}
+\fframe{merge conflicts evince the Hot Copy problem}
 {
 	git tracks diffs on diffable files.  it's pretty smart about disjoint modifications to a file, but sometimes... it can't tell what you want to do.
 
@@ -639,30 +725,7 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Session 3 - Branching and merging}
+\subsection{Branching and merging}
 
 \fframe{What if I have multiple things to work on at once?}
 {
@@ -693,16 +756,16 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 }
 
 
-\fframe{make a branch}
+\fframe{make a branch and switch to it}
 {do it now.  either in a GUI or in the terminal
 
 \vspace{\baselineskip}
 
-{\tt git branch branchname}
+{\tt git -b checkout bananas}
 
 \vspace{\baselineskip}
 
-✅ you can totally make up "folders" for your branches, and branch from branches, etc.
+✅ you can totally make up "folders" for your branches (\texttt{feature/savebutton}), and branch from branches (experimental or integration branch), etc.
 }
 
 
@@ -710,18 +773,19 @@ to {\bf merge} is a git action, meaning to make a sequence of commits appear in 
 \fframe{make a commit}
 {do it now.  either in a GUI or in the terminal}
 
-\fframe{make a switch back to {\tt master} branch}
+\fframe{make a switch back to {\tt main} branch}
 {do it now.  either in a GUI or in the terminal
 
+\texttt{git checkout main}
 
 \vspace{\baselineskip}
 
 now look around at the file you edited.  what do you notice?
 }
 
-\fframe{branch again, from master}
+\fframe{branch again, from main}
 {
-	{\tt git branch branchname2}
+	{\tt git branch cherries}
 }
 
 
@@ -741,7 +805,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 \fframe{now we'll merge in the first branch}
 {
 	\begin{enumerate}
-		\item switch back to {\tt master}
+		\item switch back to {\tt main}
 		\item {\tt git merge  branchname}
 		\item [optional] -- {\tt git branch -d branchname}
 	\end{enumerate}
@@ -758,7 +822,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 \vspace{\baselineskip}
 
 		\begin{enumerate}
-		\item switch back to {\tt master}
+		\item switch back to {\tt main}
 		\item {\tt git merge  branchname2}
 		\item [optional] -- {\tt git branch -d branchname2}
 	\end{enumerate}
@@ -812,7 +876,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 \begin{itemize}
 		\item If things get FUBAR, {\tt git reset --hard} will, well, reset your repo to before you started the merge.  just start over
 		\item beware accentally committing partially merged files.  you get diff crap left in the file, and it's annoying
-		\item You might consider doing the merge from master into feature, then merge feature into master, to make any mistakes appear in feature.
+		\item You might consider doing the merge from main into feature, then merge feature into main, to make any mistakes appear in feature.
 	\end{itemize}
 }
 
@@ -825,7 +889,7 @@ please, DO modify the same area of a file you edited in the other branch-commit 
 
 
 
-\section{Session 4 - Github and interacting with other people's repos}
+\section{Session 3 - Github and interacting with other people's repos}
 
 \fframe{Github features}
 {
